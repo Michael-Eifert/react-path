@@ -1,0 +1,44 @@
+/* navigation bar styles */
+.navbar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-brand a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-brand a:hover {
+  color: #ccc;
+}
+
+.navbar-button {
+  background: rgba(140, 105, 0, 0.25);
+  border-radius: 0.25rem;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  outline: 2px;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+}
+
+.navbar-button:hover {
+  background: rgba(140, 105, 0, 0.60);
+}
+
+.custom-link {
+  color: inherit;
+  text-decoration: none;
+}
