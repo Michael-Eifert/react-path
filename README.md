@@ -55,7 +55,7 @@ Die Webapp hat folgende Features:
 * Ziele
     * Festige dein Typescript Wissen
     * Arbeite 7 _eigene_ Beispiele für Typescript Utility Types https://www.typescriptlang.org/docs/handbook/utility-types.html (Bspw. Record, Omit, Exclude, Readonly, etc.) aus und stelle diese vor
-
+ 
 ## 2. Important Javascript features
 Wenn du dein JavaScript-Wissen noch vertiefen oder auffrischen möchtest, dann schaue dir die Aufgaben in der Datei [JavaScript.md](JavaScript.md) an.
 
