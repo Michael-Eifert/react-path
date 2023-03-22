@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import Popup from '../components/Popup'
 
 const Group: React.FC = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const onConfirmPopup = () => {
+    console.log('you called the confirm button')
+  }
 
   return (
     <>
@@ -13,7 +17,7 @@ const Group: React.FC = () => {
       <Button variant="contained" onClick={handleOpen}>
         Create new Group
       </Button>
-      <Popup open={open} handleClose={handleClose}></Popup>
+      <Popup open={open} handleClose={handleClose} handleConfirm={onConfirmPopup}></Popup>
     </>
   )
 }

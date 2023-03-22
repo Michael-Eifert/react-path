@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
 interface Props {
   open: boolean
   handleClose: () => void
+  handleConfirm: () => void // Here you have to return the group object
 }
 
 const style = {
@@ -20,7 +23,17 @@ const style = {
   p: 4,
 }
 
-const Popup: React.FC<Props> = ({ open, handleClose }) => {
+const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
+  const [groupName, setGroupName] = useState('')
+  const onChangeGroupName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupName(event.target.value)
+    console.log('Changed groupName: ', groupName)
+  }
+  const onHandleConfirm = () => {
+    handleConfirm()
+    handleClose()
+  }
+
   return (
     <Modal
       open={open}
@@ -30,13 +43,24 @@ const Popup: React.FC<Props> = ({ open, handleClose }) => {
       data-testid="modal"
     >
       <Box sx={style}>
-        <Typography id="box-title" variant="h6" component="h2">
-          Test Modal Box
+        <Typography id="box-title" variant="h4" component="h2">
+          Create your Group
         </Typography>
-        <Typography id="box-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        <Typography id="box-description" variant="body1" sx={{ mt: 2 }}>
+          Fill in your group information to create a new group to manage.
         </Typography>
+        <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Groupname"
+            fullWidth
+            variant="standard"
+            onChange={onChangeGroupName}
+          />
+        <Button sx={{mt: '6px'}} variant="contained" color="primary" onClick={onHandleConfirm}>Confirm</Button>
       </Box>
+
     </Modal>
   )
 }
