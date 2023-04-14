@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { Group } from '../model/Group'
 
 interface Props {
   open: boolean
   handleClose: () => void
-  handleConfirm: () => void // Here you have to return the group object
+  handleConfirm: (group: Group) => void // Here you have to return the group object
 }
 
 const style = {
@@ -25,12 +26,19 @@ const style = {
 
 const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
   const [groupName, setGroupName] = useState('')
+
   const onChangeGroupName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGroupName(event.target.value)
     console.log('Changed groupName: ', groupName)
   }
-  const onHandleConfirm = () => {
-    handleConfirm()
+
+  const onHandleConfirm = (event: FormEvent) => {
+    event.preventDefault() // Prevent the default form submission behavior
+    const newGroup: Group = {
+      id: Date.now(), // replace this with a better ID generation method later
+      name: groupName,
+    }
+    handleConfirm(newGroup)
     handleClose()
   }
 
@@ -49,8 +57,9 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
         <Typography id="box-description" variant="body1" sx={{ mt: 2 }}>
           Fill in your group information to create a new group to manage.
         </Typography>
-        <TextField
-            autoFocus
+        <form onSubmit={onHandleConfirm}>
+          <TextField
+            autoFocus={true}
             margin="dense"
             id="name"
             label="Groupname"
@@ -58,9 +67,16 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
             variant="standard"
             onChange={onChangeGroupName}
           />
-        <Button sx={{mt: '6px'}} variant="contained" color="primary" onClick={onHandleConfirm}>Confirm</Button>
+          <Button
+            sx={{ mt: '6px' }}
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Confirm
+          </Button>
+        </form>
       </Box>
-
     </Modal>
   )
 }

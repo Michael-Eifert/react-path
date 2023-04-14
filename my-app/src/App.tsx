@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import About from './pages/About'
-import Group from './pages/Group'
+import GroupPage from './pages/GroupPage'
 import Expenses from './pages/Expenses'
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/expenses" element={<Expenses />} />
-          <Route path="/group" element={<Group />} />
+          <Route path="/group" element={<GroupPage />} />
         </Routes>
       </div>
     </Router>
