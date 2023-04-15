@@ -29,7 +29,7 @@ const GroupElement: React.FC<Props> = ({ group }) => {
             justifyContent: 'center', // Center the content horizontally
           }}
         >
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" href={`/group/${group.id}`}>
             Details
           </Button>
         </CardActions>

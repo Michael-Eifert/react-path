@@ -3,6 +3,7 @@ import About from '../pages/About'
 import Expenses from '../pages/Expenses'
 import GroupPage from '../pages/GroupPage'
 import Home from '../pages/Home'
+import GroupDetailPage from '../pages/group/[groupId]'
 
 export const routes: Array<Route> = [
   {
@@ -35,6 +36,14 @@ export const routes: Array<Route> = [
     description: 'Group',
     element: GroupPage,
     path: '/group',
+    isEnabled: true,
+  },
+  {
+    key: 'router-group',
+    title: 'Group Detail Page',
+    description: 'Group Detail Page',
+    element: GroupDetailPage,
+    path: '/group/:groupId',
     isEnabled: true,
   },
 ]

@@ -3,8 +3,8 @@ import Button from '@mui/material/Button'
 import Popup from '../components/Popup'
 import { Group } from '../model/Group'
 import GroupElement from '../components/GroupElement'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import PageTitle from '../components/PageTitle'
 
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,13 +19,7 @@ const GroupPage: React.FC = () => {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        component="h1"
-        sx={{ mt: 4, mb: 4, fontWeigt: 'bold' }}
-      >
-        Your Groups
-      </Typography>
+      <PageTitle title={'Your Groups'}></PageTitle>
       <Box mb={2}>
         <Button variant="contained" onClick={handleOpen}>
           Create new Group
