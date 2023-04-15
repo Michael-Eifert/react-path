@@ -20,7 +20,7 @@
   "scripts": {
     "start": "cross-env PORT=3003 && react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --coverage",
     "eject": "react-scripts eject",
     "format": "prettier --write \"./**/*.{js,ts,tsx}\" --ignore-unknown",
     "format-check": "prettier --check \"./**/*.{js,ts,tsx,jsx}\"",

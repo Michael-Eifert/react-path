@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Group } from '../model/Group'
+import { generateId } from '../modules/idGenerator'
 
 interface Props {
   open: boolean
@@ -35,7 +36,7 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
   const onHandleConfirm = (event: FormEvent) => {
     event.preventDefault() // Prevent the default form submission behavior
     const newGroup: Group = {
-      id: Date.now(), // replace this with a better ID generation method later
+      id: generateId(10), // replace this with a better ID generation method later
       name: groupName,
     }
     handleConfirm(newGroup)

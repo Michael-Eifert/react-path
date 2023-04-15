@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import { Group } from '../model/Group'
 import { Button, CardActions } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 interface Props {
   group: Group
@@ -29,7 +30,12 @@ const GroupElement: React.FC<Props> = ({ group }) => {
             justifyContent: 'center', // Center the content horizontally
           }}
         >
-          <Button size="small" variant="contained" href={`/group/${group.id}`}>
+          <Button
+            size="small"
+            variant="contained"
+            component={Link}
+            to={`/group/${group.id}`}
+          >
             Details
           </Button>
         </CardActions>

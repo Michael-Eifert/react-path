@@ -5,11 +5,12 @@ import { Group } from '../model/Group'
 import GroupElement from '../components/GroupElement'
 import Box from '@mui/material/Box'
 import PageTitle from '../components/PageTitle'
+import { useGroupContext } from '../context/GroupContext'
 
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [groups, setGroups] = useState<Array<Group>>([])
-
+  const { groups, setGroups } = useGroupContext()
+  console.log('Group data in group page: ', groups)
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
   const onConfirmPopup = (newGroup: Group) => {
