@@ -1,9 +1,12 @@
 // Import any necessary dependencies
-import React from 'react'
+import React, { useState } from 'react'
 import { Fab, Grid, styled } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { Group } from '../../model/Group'
+import { Group, Person } from '../../model/Group'
 import PersonList from '../PersonList'
+import Popup from '../Popup'
+import { addPersonToGroup } from '../../modules/person.utils'
+import { useGroupContext } from '../../context/GroupContext'
 
 interface PersonsTabProps {
   group: Group
@@ -15,8 +18,20 @@ const PersonListWrapper = styled(Grid)({
 })
 
 const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const { updateGroup } = useGroupContext()
+
   const handleAddPersonClick = () => {
-    // You can implement adding a person to the group here later.
+    setIsPopupOpen(true)
+  }
+
+  const handleCloseAddPersonPopup = () => {
+    setIsPopupOpen(false)
+  }
+
+  const handleAddNewPerson = (newPerson: Person) => {
+    const updatedGroup = addPersonToGroup(group, newPerson)
+    updateGroup(updatedGroup)
   }
 
   return (
@@ -30,6 +45,15 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
           <AddIcon />
         </Fab>
       </Grid>
+      <Popup
+        open={isPopupOpen}
+        handleClose={handleCloseAddPersonPopup}
+        handleConfirm={handleAddNewPerson}
+        type="person"
+        title="Add a new person"
+        description="Fill in the information below to add a new person to the group."
+        nameInputLabel="Person Name"
+      />
     </Grid>
   )
 }

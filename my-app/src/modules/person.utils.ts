@@ -1,16 +1,8 @@
 import { Group, Person } from '../model/Group'
-import { generateId } from './idGenerator'
 
-export function addPersonToGroup(group: Group, personName: string): Group {
-  const newPerson: Person = {
-    id: generateId(),
-    name: personName,
-    expenses: [],
-    balance: 0,
-  }
-
+export function addPersonToGroup(group: Group, newPerson: Person): Group {
   const updatedPersons = [...group.persons, newPerson]
-
+  console.log('Added person: ', newPerson, ' To group: ', group)
   return {
     ...group,
     persons: updatedPersons,

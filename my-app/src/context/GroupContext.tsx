@@ -5,6 +5,8 @@ interface GroupContextData {
   groups: Group[]
   setGroups: (groups: Group[]) => void
   getGroupById: (id: string | undefined) => Group | undefined
+
+  updateGroup: (updatedGroup: Group) => void
 }
 
 interface GroupProviderProps {
@@ -18,11 +20,24 @@ const GroupProvider: React.FC<GroupProviderProps> = ({ children }) => {
   const getGroupById = (id: string | undefined) => {
     return id ? groups.find((group) => group.id === id) : undefined
   }
+  const updateGroup = (updatedGroup: Group) => {
+    setGroups(
+      groups.map((group) => {
+        if (group.id === updatedGroup.id) {
+          return updatedGroup
+        }
+        return group
+      }),
+    )
+
+    console.log('You updated a group: ', updatedGroup)
+  }
 
   const value = {
     groups,
     setGroups,
     getGroupById,
+    updateGroup,
   }
 
   return <GroupContext.Provider value={value}>{children}</GroupContext.Provider>

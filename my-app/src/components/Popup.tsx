@@ -1,16 +1,21 @@
-import React, { useState, FormEvent, useEffect } from 'react'
+import React, { useState, FormEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import { Group } from '../model/Group'
+import { Group, Person } from '../model/Group'
 import { generateId } from '../modules/idGenerator'
 
 interface Props {
   open: boolean
   handleClose: () => void
-  handleConfirm: (group: Group) => void // Here you have to return the group object
+  handleConfirm: (data: any) => void
+  type: 'group' | 'person'
+  title: string
+  description: string
+
+  nameInputLabel: string
 }
 
 const style = {
@@ -25,21 +30,39 @@ const style = {
   p: 4,
 }
 
-const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
-  const [groupName, setGroupName] = useState('')
+const Popup: React.FC<Props> = ({
+  open,
+  handleClose,
+  handleConfirm,
+  type,
+  title,
+  description,
+  nameInputLabel,
+}) => {
+  const [inputName, setInputName] = useState('')
 
-  const onChangeGroupName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGroupName(event.target.value)
+  const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputName(event.target.value)
   }
 
   const onHandleConfirm = (event: FormEvent) => {
     event.preventDefault() // Prevent the default form submission behavior
-    const newGroup: Group = {
-      id: generateId(), // replace this with a better ID generation method later
-      name: groupName,
-      persons: [],
+    if (type === 'group') {
+      const newGroup: Group = {
+        id: generateId(),
+        name: inputName,
+        persons: [],
+      }
+      handleConfirm(newGroup)
+    } else if (type === 'person') {
+      const newPerson: Person = {
+        id: generateId(),
+        name: inputName,
+        expenses: [],
+        balance: 0,
+      }
+      handleConfirm(newPerson)
     }
-    handleConfirm(newGroup)
     handleClose()
   }
 
@@ -53,20 +76,20 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
     >
       <Box sx={style}>
         <Typography id="box-title" variant="h4" component="h2">
-          Create your Group
+          {title}
         </Typography>
         <Typography id="box-description" variant="body1" sx={{ mt: 2 }}>
-          Fill in your group information to create a new group to manage.
+          {description}
         </Typography>
         <form onSubmit={onHandleConfirm}>
           <TextField
             autoFocus={true}
             margin="dense"
             id="name"
-            label="Groupname"
+            label={nameInputLabel}
             fullWidth
             variant="standard"
-            onChange={onChangeGroupName}
+            onChange={onChangeName}
           />
           <Button
             sx={{ mt: '6px' }}
