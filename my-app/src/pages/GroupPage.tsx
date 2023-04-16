@@ -10,7 +10,7 @@ import { useGroupContext } from '../context/GroupContext'
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { groups, setGroups } = useGroupContext()
-  console.log('Group data in group page: ', groups)
+
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
   const onConfirmPopup = (newGroup: Group) => {

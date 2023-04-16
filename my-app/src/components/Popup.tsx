@@ -30,7 +30,6 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
 
   const onChangeGroupName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGroupName(event.target.value)
-    console.log('Changed groupName: ', groupName)
   }
 
   const onHandleConfirm = (event: FormEvent) => {

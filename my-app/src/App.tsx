@@ -13,7 +13,6 @@ import GroupProvider from './context/GroupContext'
 const App: React.FC = () => {
   const addRoute = (route: AppRoute) => {
     const RouteComponent = route.element || Home // Home is the default variant
-    // console.log('Route:', route)
     return (
       <Route key={route.key} path={route.path} element={<RouteComponent />} />
     )

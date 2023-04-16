@@ -15,9 +15,7 @@ const GroupContext = createContext<GroupContextData | null>(null)
 
 const GroupProvider: React.FC<GroupProviderProps> = ({ children }) => {
   const [groups, setGroups] = useState<Group[]>([])
-  console.log('context group:', groups)
   const getGroupById = (id: string | undefined) => {
-    console.log('my Groups', groups)
     return id ? groups.find((group) => group.id === id) : undefined
   }
 
