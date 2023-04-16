@@ -1,18 +1,7 @@
 import React from 'react'
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-} from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { Group, Person } from '../model/Group'
+import PersonCard from './PersonCard'
 
 interface PersonListProps {
   group: Group
@@ -25,28 +14,12 @@ const PersonList: React.FC<PersonListProps> = ({ group }) => {
         Persons:
       </Typography>
       <Box sx={{ my: 2 }}>
-        <Grid container justifyContent="center">
-          <Grid item xs={12} sm={8} md={6} lg={4}>
-            <Card>
-              <CardContent>
-                <List>
-                  {group.persons.map((person: Person, index: number) => (
-                    <React.Fragment key={person.id}>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <Avatar sx={{ backgroundColor: 'royalblue' }}>
-                            {person.name.slice(0, 2)}
-                          </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={person.name} />
-                      </ListItem>
-                      {index < group.persons.length - 1 && <Divider />}
-                    </React.Fragment>
-                  ))}
-                </List>
-              </CardContent>
-            </Card>
-          </Grid>
+        <Grid container spacing={3} justifyContent="center">
+          {group.persons.map((person: Person) => (
+            <Grid item xs={12} sm={12} md={6} lg={6} key={person.id}>
+              <PersonCard person={person} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </>
