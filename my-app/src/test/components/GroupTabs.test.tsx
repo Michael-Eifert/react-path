@@ -5,7 +5,7 @@ import { groupsMock } from '../__mocks__/groupMock'
 import GroupProvider from '../../context/GroupContext'
 
 describe('GroupTabs', () => {
-  test('renders all tabs and switches between them', () => {
+  it('renders all tabs and switches between them', () => {
     render(
       <GroupProvider>
         <GroupTabs

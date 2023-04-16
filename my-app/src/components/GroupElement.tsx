@@ -23,6 +23,9 @@ const GroupElement: React.FC<Props> = ({ group }) => {
         <Typography variant="h5" component="div">
           {group.name}
         </Typography>
+        <Typography variant="body1" component="div" sx={{ mt: 2 }}>
+          {`Group Code: ${group.id}`}
+        </Typography>
         <CardActions
           sx={{
             mt: '10px',
