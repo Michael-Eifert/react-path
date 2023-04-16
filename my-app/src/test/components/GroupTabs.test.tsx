@@ -1,19 +1,14 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { Group } from '../../model/Group'
 import GroupTabs from '../../components/GroupTabs'
-
-const mockGroup: Group = {
-  id: 'testGroup',
-  name: 'Test Group',
-}
+import { groupsMock } from '../__mocks__/groupMock'
 
 describe('GroupTabs', () => {
   test('renders all tabs and switches between them', () => {
     render(
       <GroupTabs
-        group={mockGroup}
+        group={groupsMock[0]}
         tabValue={0}
         handleChange={(event, newValue) => {}}
       />,

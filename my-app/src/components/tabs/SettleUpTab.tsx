@@ -8,7 +8,6 @@ interface SettleUpTabProps {
 }
 
 const SettleUpTab: React.FC<SettleUpTabProps> = ({ group }) => {
-  // Any tab-specific state or logic should go here
 
   return (
     <Box>

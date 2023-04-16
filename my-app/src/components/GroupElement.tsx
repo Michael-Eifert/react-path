@@ -26,8 +26,8 @@ const GroupElement: React.FC<Props> = ({ group }) => {
         <CardActions
           sx={{
             mt: '10px',
-            display: 'flex', // Use flexbox
-            justifyContent: 'center', // Center the content horizontally
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
           <Button

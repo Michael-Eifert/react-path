@@ -8,8 +8,6 @@ interface ExpensesTabProps {
 }
 
 const ExpensesTab: React.FC<ExpensesTabProps> = ({ group }) => {
-  // Any tab-specific state or logic should go here
-
   return (
     <Box>
       <p>This is the Expenses tab</p>

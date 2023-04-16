@@ -35,8 +35,9 @@ const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm }) => {
   const onHandleConfirm = (event: FormEvent) => {
     event.preventDefault() // Prevent the default form submission behavior
     const newGroup: Group = {
-      id: generateId(10), // replace this with a better ID generation method later
+      id: generateId(), // replace this with a better ID generation method later
       name: groupName,
+      persons: [],
     }
     handleConfirm(newGroup)
     handleClose()
