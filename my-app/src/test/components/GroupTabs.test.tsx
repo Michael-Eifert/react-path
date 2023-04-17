@@ -2,18 +2,18 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import GroupTabs from '../../components/GroupTabs'
 import { groupsMock } from '../__mocks__/groupMock'
-import GroupProvider from '../../context/GroupContext'
+import GroupContextProvider from '../../context/GroupContext'
 
 describe('GroupTabs', () => {
   it('renders all tabs and switches between them', () => {
     render(
-      <GroupProvider>
+      <GroupContextProvider>
         <GroupTabs
           group={groupsMock[0]}
           tabValue={0}
           handleChange={(event, newValue) => {}}
         />
-      </GroupProvider>,
+      </GroupContextProvider>,
     )
 
     const personsTab = screen.getByText('Persons')

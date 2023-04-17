@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Group } from '../model/Group'
+import { groupsMock } from '../test/__mocks__/groupMock'
 
 interface GroupContextData {
   groups: Group[]
@@ -16,7 +17,7 @@ interface GroupProviderProps {
 const GroupContext = createContext<GroupContextData | null>(null)
 
 const GroupProvider: React.FC<GroupProviderProps> = ({ children }) => {
-  const [groups, setGroups] = useState<Group[]>([])
+  const [groups, setGroups] = useState<Group[]>(groupsMock)
   const getGroupById = (id: string | undefined) => {
     return id ? groups.find((group) => group.id === id) : undefined
   }

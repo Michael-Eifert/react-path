@@ -5,8 +5,11 @@ import { useState } from 'react'
 import GroupTabs from '../../components/GroupTabs'
 import { Box, IconButton, InputAdornment, TextField } from '@mui/material'
 import SaveIcon from '@mui/icons-material/Save'
+import EditIcon from '@mui/icons-material/Edit'
 
 const GroupDetailPage: React.FC = () => {
+  const [openNameEdit, setOpenNameEdit] = useState(false)
+
   const { groupId } = useParams<{ groupId: string }>()
   const { getGroupById, updateGroup } = useGroupContext()
   const group = getGroupById(groupId)
@@ -28,18 +31,18 @@ const GroupDetailPage: React.FC = () => {
       const updatedGroup = { ...group, name: groupName }
       updateGroup(updatedGroup)
     }
+    setOpenNameEdit(false)
   }
 
   if (!group) {
     return <div>Group not found</div>
   }
 
-  return (
-    <>
-      <PageTitle title={`Group: ${group.name}`} />
-      <Box sx={{ mb: 2 }}>
+  const showGroupName = () => {
+    return openNameEdit ? (
+      <Box sx={{ mt: 5, mb: 2 }}>
         <TextField
-          label="You can change the group name here"
+          label="Change Group Name"
           value={groupName}
           onChange={handleNameChange}
           InputProps={{
@@ -53,6 +56,32 @@ const GroupDetailPage: React.FC = () => {
           }}
         />
       </Box>
+    ) : (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <PageTitle title={`${group.name}`} />
+        <IconButton
+          sx={{ width: 32, height: 32, ml: 2 }}
+          color="primary"
+          aria-label="edit name"
+          component="label"
+          onClick={() => setOpenNameEdit(true)}
+        >
+          <EditIcon />
+        </IconButton>
+      </Box>
+    )
+  }
+
+  return (
+    <>
+      {showGroupName()}
       <GroupTabs
         group={group}
         tabValue={tabValue}

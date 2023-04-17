@@ -8,7 +8,7 @@ import Home from './pages/Home'
 import { routes } from './config/routes'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme'
-import GroupProvider from './context/GroupContext'
+import GroupContextProvider from './context/GroupContext'
 
 const App: React.FC = () => {
   const addRoute = (route: AppRoute) => {
@@ -20,14 +20,14 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <GroupProvider>
+      <GroupContextProvider>
         <ThemeProvider theme={theme}>
           <div className="App">
             <NavBar />
             <Routes>{routes.map((route) => addRoute(route))}</Routes>
           </div>
         </ThemeProvider>
-      </GroupProvider>
+      </GroupContextProvider>
     </Router>
   )
 }
