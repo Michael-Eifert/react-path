@@ -3,6 +3,7 @@ export interface Group {
   id: string
   name: string
   persons: Person[]
+  expenses: Expense[]
 }
 
 export interface Expense {
@@ -16,6 +17,5 @@ export interface Expense {
 export interface Person {
   id: string
   name: string
-  expenses: Expense[]
   balance: number
 }

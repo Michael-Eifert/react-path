@@ -8,7 +8,6 @@ describe('addPersonToGroup', () => {
     const newPerson: Person = {
       id: 'testPerson1',
       name: 'Test Person',
-      expenses: [],
       balance: 0,
     }
     const updatedGroup = addPersonToGroup(group, newPerson)

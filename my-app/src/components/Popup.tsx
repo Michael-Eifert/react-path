@@ -52,13 +52,13 @@ const Popup: React.FC<Props> = ({
         id: generateId(),
         name: inputName,
         persons: [],
+        expenses: [],
       }
       handleConfirm(newGroup)
     } else if (type === 'person') {
       const newPerson: Person = {
         id: generateId(),
         name: inputName,
-        expenses: [],
         balance: 0,
       }
       handleConfirm(newPerson)
