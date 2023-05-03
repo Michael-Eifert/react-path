@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import Popup from '../components/Popup'
+import { PopupType } from '../model/Popup'
 
 describe('Popup', () => {
   it('renders the component', () => {
@@ -8,7 +9,7 @@ describe('Popup', () => {
         open={true}
         handleClose={jest.fn}
         handleConfirm={jest.fn}
-        type="group"
+        type={PopupType.GROUP}
         title=""
         description=""
         nameInputLabel=""

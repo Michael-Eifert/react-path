@@ -6,6 +6,7 @@ import GroupElement from '../components/GroupElement'
 import Box from '@mui/material/Box'
 import PageTitle from '../components/PageTitle'
 import { useGroupContext } from '../context/GroupContext'
+import { PopupType } from '../model/Popup'
 
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +31,7 @@ const GroupPage: React.FC = () => {
         open={isOpen}
         handleClose={handleClose}
         handleConfirm={onConfirmPopup}
-        type={'group'}
+        type={PopupType.GROUP}
         title={'Create your Group'}
         description="Fill in your group information to create a new group to manage."
         nameInputLabel="Group name"

@@ -7,6 +7,7 @@ import PersonList from '../PersonList'
 import Popup from '../Popup'
 import { addPersonToGroup } from '../../modules/person.utils'
 import { useGroupContext } from '../../context/GroupContext'
+import { PopupType } from '../../model/Popup'
 
 interface PersonsTabProps {
   group: Group
@@ -49,7 +50,7 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
         open={isPopupOpen}
         handleClose={handleCloseAddPersonPopup}
         handleConfirm={handleAddNewPerson}
-        type="person"
+        type={PopupType.PERSON}
         title="Add a new person"
         description="Fill in the information below to add a new person to the group."
         nameInputLabel="Person Name"

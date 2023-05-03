@@ -6,15 +6,17 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { Group, Person } from '../model/Group'
 import { generateId } from '../modules/idGenerator'
+import PersonInput from './popupInputs/PersonInput'
+import { PopupType } from '../model/Popup'
+import GroupInput from './popupInputs/GroupInput'
 
 interface Props {
   open: boolean
   handleClose: () => void
   handleConfirm: (data: any) => void
-  type: 'group' | 'person'
+  type: PopupType
   title: string
   description: string
-
   nameInputLabel: string
 }
 
@@ -47,23 +49,54 @@ const Popup: React.FC<Props> = ({
 
   const onHandleConfirm = (event: FormEvent) => {
     event.preventDefault() // Prevent the default form submission behavior
-    if (type === 'group') {
-      const newGroup: Group = {
-        id: generateId(),
-        name: inputName,
-        persons: [],
-        expenses: [],
-      }
-      handleConfirm(newGroup)
-    } else if (type === 'person') {
-      const newPerson: Person = {
-        id: generateId(),
-        name: inputName,
-        balance: 0,
-      }
-      handleConfirm(newPerson)
+
+    let newItem: Group | Person
+
+    switch (type) {
+      case PopupType.GROUP:
+        newItem = {
+          id: generateId(),
+          name: inputName,
+          persons: [],
+          expenses: [],
+        }
+        break
+      case PopupType.PERSON:
+        newItem = {
+          id: generateId(),
+          name: inputName,
+          balance: 0,
+        }
+        break
+      default:
+        throw new Error(`Type not handled: ${type}`)
     }
+
+    handleConfirm(newItem)
     handleClose()
+  }
+
+  const renderInput = () => {
+    switch (type) {
+      case PopupType.PERSON:
+        return (
+          <PersonInput
+            onChangeName={onChangeName}
+            onHandleConfirm={onHandleConfirm}
+            nameInputLabel={nameInputLabel}
+          />
+        )
+      case PopupType.GROUP:
+        return (
+          <GroupInput
+            onChangeName={onChangeName}
+            onHandleConfirm={onHandleConfirm}
+            nameInputLabel={nameInputLabel}
+          />
+        )
+      default:
+        throw new Error(`Type not handled: ${type}`)
+    }
   }
 
   return (
@@ -74,33 +107,7 @@ const Popup: React.FC<Props> = ({
       aria-describedby="modal-description"
       data-testid="modal"
     >
-      <Box sx={style}>
-        <Typography id="box-title" variant="h4" component="h2">
-          {title}
-        </Typography>
-        <Typography id="box-description" variant="body1" sx={{ mt: 2 }}>
-          {description}
-        </Typography>
-        <form onSubmit={onHandleConfirm}>
-          <TextField
-            autoFocus={true}
-            margin="dense"
-            id="name"
-            label={nameInputLabel}
-            fullWidth
-            variant="standard"
-            onChange={onChangeName}
-          />
-          <Button
-            sx={{ mt: '6px' }}
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Confirm
-          </Button>
-        </form>
-      </Box>
+      <Box sx={style}>{renderInput()}</Box>
     </Modal>
   )
 }
