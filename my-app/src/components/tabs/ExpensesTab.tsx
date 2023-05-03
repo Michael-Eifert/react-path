@@ -56,9 +56,6 @@ const ExpensesTab: React.FC<ExpensesTabProps> = ({ group }) => {
         handleClose={handleClosePopup}
         handleConfirm={handleNewExpense}
         type={PopupType.EXPENSE}
-        title="Add a new person"
-        description="Fill in the information below to add a new person to the group."
-        nameInputLabel="Person Name"
       />
     </Box>
   )

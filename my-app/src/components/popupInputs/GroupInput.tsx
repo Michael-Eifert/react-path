@@ -1,17 +1,16 @@
 // TODO: Fix linting
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField, Typography } from '@mui/material'
+import ConfirmButton from '../ConfirmButton'
 
 interface GroupInputProps {
   onChangeName: (event: React.ChangeEvent<HTMLInputElement>) => void
   onHandleConfirm: (event: React.FormEvent) => void
-  nameInputLabel: string
 }
 
 const GroupInput: React.FC<GroupInputProps> = ({
   onChangeName,
   onHandleConfirm,
-  nameInputLabel,
 }) => {
   return (
     <Box>
@@ -26,19 +25,12 @@ const GroupInput: React.FC<GroupInputProps> = ({
           autoFocus={true}
           margin="dense"
           id="name"
-          label={nameInputLabel}
+          label="group name"
           fullWidth
           variant="standard"
           onChange={onChangeName}
         />
-        <Button
-          sx={{ mt: '6px' }}
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
-          Confirm
-        </Button>
+        <ConfirmButton onSubmit={onHandleConfirm} />
       </form>
     </Box>
   )

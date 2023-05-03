@@ -1,8 +1,8 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
 
 interface ExpenseInputProps {
-  test: string
-  // Define necessary props for input handling and form submission
+  onChangeName: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onHandleConfirm: (event: React.FormEvent) => void
 }
 
 const ExpenseInput: React.FC<ExpenseInputProps> = (/* props */) => {

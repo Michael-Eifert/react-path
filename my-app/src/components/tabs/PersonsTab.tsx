@@ -51,9 +51,6 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
         handleClose={handleCloseAddPersonPopup}
         handleConfirm={handleAddNewPerson}
         type={PopupType.PERSON}
-        title="Add a new person"
-        description="Fill in the information below to add a new person to the group."
-        nameInputLabel="Person Name"
       />
     </Grid>
   )

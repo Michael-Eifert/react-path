@@ -20,25 +20,27 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ group }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {expenses.map((expense: Expense) => (
-          <TableRow key={expense.id}>
-            <TableCell>{expense.name}</TableCell>
-            <TableCell>{expense.amount}</TableCell>
-            <TableCell>
-              {group.persons.find((person) => person.id === expense.paidBy)
-                ?.name || 'Unknown'}
-            </TableCell>
-            <TableCell>
-              {expense.beneficiaries
-                .map(
-                  (personId) =>
-                    group.persons.find((person) => person.id === personId)
-                      ?.name || 'Unknown',
-                )
-                .join(', ')}
-            </TableCell>
-          </TableRow>
-        ))}
+        {expenses.map((expense) =>
+          expense ? (
+            <TableRow key={expense.id}>
+              <TableCell>{expense.name}</TableCell>
+              <TableCell>{expense.amount}</TableCell>
+              <TableCell>
+                {group.persons.find((person) => person?.id === expense.paidBy)
+                  ?.name || 'Unknown'}
+              </TableCell>
+              <TableCell>
+                {expense?.beneficiaries
+                  .map(
+                    (personId) =>
+                      group.persons.find((person) => person.id === personId)
+                        ?.name || 'Unknown',
+                  )
+                  .join(', ')}
+              </TableCell>
+            </TableRow>
+          ) : null,
+        )}
       </TableBody>
     </Table>
   )

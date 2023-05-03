@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField, Typography } from '@mui/material'
+import ConfirmButton from '../ConfirmButton'
 
 interface PersonInputProps {
   onChangeName: (event: React.ChangeEvent<HTMLInputElement>) => void
   onHandleConfirm: (event: React.FormEvent) => void
-  nameInputLabel: string
 }
 
 const PersonInput: React.FC<PersonInputProps> = ({
   onChangeName,
   onHandleConfirm,
-  nameInputLabel,
 }) => {
   return (
     <Box>
@@ -25,19 +24,12 @@ const PersonInput: React.FC<PersonInputProps> = ({
           autoFocus={true}
           margin="dense"
           id="name"
-          label={nameInputLabel}
+          label="person name"
           fullWidth
           variant="standard"
           onChange={onChangeName}
         />
-        <Button
-          sx={{ mt: '6px' }}
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
-          Confirm
-        </Button>
+        <ConfirmButton onSubmit={onHandleConfirm} />
       </form>
     </Box>
   )

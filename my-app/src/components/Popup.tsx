@@ -1,23 +1,18 @@
 import React, { useState, FormEvent } from 'react'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import { Group, Person } from '../model/Group'
+import { Expense, Group, Person } from '../model/Group'
 import { generateId } from '../modules/idGenerator'
 import PersonInput from './popupInputs/PersonInput'
 import { PopupType } from '../model/Popup'
 import GroupInput from './popupInputs/GroupInput'
+import ExpenseInput from './popupInputs/ExpenseInputProps'
 
 interface Props {
   open: boolean
   handleClose: () => void
   handleConfirm: (data: any) => void
   type: PopupType
-  title: string
-  description: string
-  nameInputLabel: string
 }
 
 const style = {
@@ -32,15 +27,7 @@ const style = {
   p: 4,
 }
 
-const Popup: React.FC<Props> = ({
-  open,
-  handleClose,
-  handleConfirm,
-  type,
-  title,
-  description,
-  nameInputLabel,
-}) => {
+const Popup: React.FC<Props> = ({ open, handleClose, handleConfirm, type }) => {
   const [inputName, setInputName] = useState('')
 
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +37,7 @@ const Popup: React.FC<Props> = ({
   const onHandleConfirm = (event: FormEvent) => {
     event.preventDefault() // Prevent the default form submission behavior
 
-    let newItem: Group | Person
+    let newItem: Group | Person | Expense
 
     switch (type) {
       case PopupType.GROUP:
@@ -83,7 +70,6 @@ const Popup: React.FC<Props> = ({
           <PersonInput
             onChangeName={onChangeName}
             onHandleConfirm={onHandleConfirm}
-            nameInputLabel={nameInputLabel}
           />
         )
       case PopupType.GROUP:
@@ -91,7 +77,14 @@ const Popup: React.FC<Props> = ({
           <GroupInput
             onChangeName={onChangeName}
             onHandleConfirm={onHandleConfirm}
-            nameInputLabel={nameInputLabel}
+          />
+        )
+
+      case PopupType.EXPENSE:
+        return (
+          <ExpenseInput
+            onChangeName={onChangeName}
+            onHandleConfirm={onHandleConfirm}
           />
         )
       default:

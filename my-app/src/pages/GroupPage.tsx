@@ -32,9 +32,6 @@ const GroupPage: React.FC = () => {
         handleClose={handleClose}
         handleConfirm={onConfirmPopup}
         type={PopupType.GROUP}
-        title={'Create your Group'}
-        description="Fill in your group information to create a new group to manage."
-        nameInputLabel="Group name"
       />
       <Box>
         {groups.map((group) => (

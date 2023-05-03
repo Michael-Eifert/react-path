@@ -10,9 +10,6 @@ describe('Popup', () => {
         handleClose={jest.fn}
         handleConfirm={jest.fn}
         type={PopupType.GROUP}
-        title=""
-        description=""
-        nameInputLabel=""
       ></Popup>,
     )
     const element = screen.getByTestId('modal')
