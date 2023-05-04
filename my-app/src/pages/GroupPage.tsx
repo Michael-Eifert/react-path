@@ -6,7 +6,7 @@ import GroupElement from '../components/GroupElement'
 import Box from '@mui/material/Box'
 import PageTitle from '../components/PageTitle'
 import { useGroupContext } from '../context/GroupContext'
-import { PopupType } from '../model/Popup'
+import GroupInput from '../components/popupInputs/GroupInput'
 
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -27,12 +27,9 @@ const GroupPage: React.FC = () => {
           Create new Group
         </Button>
       </Box>
-      <Popup
-        open={isOpen}
-        handleClose={handleClose}
-        handleConfirm={onConfirmPopup}
-        type={PopupType.GROUP}
-      />
+      <Popup open={isOpen} handleClose={handleClose}>
+        <GroupInput onConfirm={onConfirmPopup} handleClose={handleClose} />
+      </Popup>
       <Box>
         {groups.map((group) => (
           <GroupElement key={group.id} group={group} />

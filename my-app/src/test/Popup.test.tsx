@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react'
 import Popup from '../components/Popup'
-import { PopupType } from '../model/Popup'
 
 describe('Popup', () => {
   it('renders the component', () => {
+    const MockChild = () => <div data-testid="mock-child">Mock Child</div>
     render(
-      <Popup
-        open={true}
-        handleClose={jest.fn}
-        handleConfirm={jest.fn}
-        type={PopupType.GROUP}
-      ></Popup>,
+      <Popup open={true} handleClose={jest.fn}>
+        <MockChild />
+      </Popup>,
     )
     const element = screen.getByTestId('modal')
     expect(element).toBeInTheDocument()
+
+    const childElement = screen.getByTestId('mock-child')
+    expect(childElement).toBeInTheDocument()
   })
 })

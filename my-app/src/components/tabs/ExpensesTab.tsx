@@ -1,21 +1,13 @@
 import React, { useState } from 'react'
-import {
-  Box,
-  Fab,
-  Grid,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material'
+import { Box, Fab, Grid } from '@mui/material'
 import { Expense, Group } from '../../model/Group'
 import Popup from '../Popup'
 import { useGroupContext } from '../../context/GroupContext'
 import AddIcon from '@mui/icons-material/Add'
 import { addExpenseToGroup } from '../../modules/expense.utils'
 import ExpenseList from '../ExpenseList'
-import { PopupType } from '../../model/Popup'
+import AddExpenseForm from '../popupInputs/AddExpenseForm'
+import { generateId } from '../../modules/idGenerator'
 
 interface ExpensesTabProps {
   group: Group
@@ -33,7 +25,19 @@ const ExpensesTab: React.FC<ExpensesTabProps> = ({ group }) => {
     setIsPopupOpen(false)
   }
 
-  const handleNewExpense = (newExpense: Expense) => {
+  const handleNewExpense = (
+    expenseName: string,
+    amount: number,
+    paidBy: string,
+    beneficiaries: string[],
+  ) => {
+    const newExpense: Expense = {
+      id: generateId(),
+      name: expenseName,
+      amount,
+      paidBy,
+      beneficiaries,
+    }
     const updatedGroup = addExpenseToGroup(group, newExpense)
     updateGroup(updatedGroup)
   }
@@ -51,12 +55,13 @@ const ExpensesTab: React.FC<ExpensesTabProps> = ({ group }) => {
         <Grid item xs={3} sx={{ textAlign: 'right', pl: 3 }} />
       </Grid>
       <ExpenseList group={group} />
-      <Popup
-        open={isPopupOpen}
-        handleClose={handleClosePopup}
-        handleConfirm={handleNewExpense}
-        type={PopupType.EXPENSE}
-      />
+      <Popup open={isPopupOpen} handleClose={handleClosePopup}>
+        <AddExpenseForm
+          onSubmit={handleNewExpense}
+          group={group}
+          handleClose={handleClosePopup}
+        />
+      </Popup>
     </Box>
   )
 }

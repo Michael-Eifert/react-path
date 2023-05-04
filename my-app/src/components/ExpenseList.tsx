@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import { Expense, Group } from '../model/Group'
+import { Group } from '../model/Group'
 
 interface ExpenseListProps {
   group: Group

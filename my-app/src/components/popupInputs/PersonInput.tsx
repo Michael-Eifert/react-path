@@ -1,16 +1,29 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import ConfirmButton from '../ConfirmButton'
+import { useState } from 'react'
 
 interface PersonInputProps {
-  onChangeName: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onHandleConfirm: (event: React.FormEvent) => void
+  onConfirm: (newPersonName: string) => void
+  handleClose: () => void
 }
 
 const PersonInput: React.FC<PersonInputProps> = ({
-  onChangeName,
-  onHandleConfirm,
+  onConfirm,
+  handleClose,
 }) => {
+  const [personName, setPersonName] = useState('')
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPersonName(e.target.value)
+  }
+
+  const handleConfirm = (e: React.FormEvent) => {
+    e.preventDefault()
+    onConfirm(personName)
+    setPersonName('')
+    handleClose()
+  }
   return (
     <Box>
       <Typography id="box-title" variant="h4" component="h2">
@@ -19,7 +32,7 @@ const PersonInput: React.FC<PersonInputProps> = ({
       <Typography id="box-description" variant="body1" sx={{ mt: 2 }}>
         {'Fill in the information below to add a new person to the group.'}
       </Typography>
-      <form onSubmit={onHandleConfirm}>
+      <form onSubmit={handleConfirm}>
         <TextField
           autoFocus={true}
           margin="dense"
@@ -27,9 +40,9 @@ const PersonInput: React.FC<PersonInputProps> = ({
           label="person name"
           fullWidth
           variant="standard"
-          onChange={onChangeName}
+          onChange={handleNameChange}
         />
-        <ConfirmButton onSubmit={onHandleConfirm} />
+        <ConfirmButton onSubmit={handleConfirm} />
       </form>
     </Box>
   )

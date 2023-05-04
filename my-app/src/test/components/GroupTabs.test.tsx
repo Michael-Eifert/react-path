@@ -11,7 +11,10 @@ describe('GroupTabs', () => {
         <GroupTabs
           group={groupsMock[0]}
           tabValue={0}
-          handleChange={(event, newValue) => {}}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          handleChange={(_event, _newValue) => {
+            return null
+          }}
         />
       </GroupContextProvider>,
     )

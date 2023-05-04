@@ -7,7 +7,8 @@ import PersonList from '../PersonList'
 import Popup from '../Popup'
 import { addPersonToGroup } from '../../modules/person.utils'
 import { useGroupContext } from '../../context/GroupContext'
-import { PopupType } from '../../model/Popup'
+import PersonInput from '../popupInputs/PersonInput'
+import { generateId } from '../../modules/idGenerator'
 
 interface PersonsTabProps {
   group: Group
@@ -30,7 +31,12 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
     setIsPopupOpen(false)
   }
 
-  const handleAddNewPerson = (newPerson: Person) => {
+  const handleAddNewPerson = (newPersonName: string) => {
+    const newPerson: Person = {
+      id: generateId(),
+      name: newPersonName,
+      balance: 0,
+    }
     const updatedGroup = addPersonToGroup(group, newPerson)
     updateGroup(updatedGroup)
   }
@@ -46,12 +52,12 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
           <AddIcon />
         </Fab>
       </Grid>
-      <Popup
-        open={isPopupOpen}
-        handleClose={handleCloseAddPersonPopup}
-        handleConfirm={handleAddNewPerson}
-        type={PopupType.PERSON}
-      />
+      <Popup open={isPopupOpen} handleClose={handleCloseAddPersonPopup}>
+        <PersonInput
+          onConfirm={handleAddNewPerson}
+          handleClose={handleCloseAddPersonPopup}
+        />
+      </Popup>
     </Grid>
   )
 }
