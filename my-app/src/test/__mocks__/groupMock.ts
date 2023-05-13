@@ -5,21 +5,21 @@ export const groupsMock: Group[] = [
     id: 'GroupId1',
     name: 'Diamond',
     persons: [
-      { id: '1', name: 'Myriam',  balance: 0 },
-      { id: '2', name: 'Paul',  balance: 0 },
-      { id: '3', name: 'Michael',  balance: 0 },
+      { id: '1', name: 'Myriam', balance: 0, debts: [] },
+      { id: '2', name: 'Paul', balance: 0, debts: [] },
+      { id: '3', name: 'Michael', balance: 0, debts: [] },
     ],
-    expenses: []
+    expenses: [],
   },
   {
     id: 'GroupId2',
     name: 'Crystal',
     persons: [
-      { id: '4', name: 'Andrea', balance: 0 },
-      { id: '5', name: 'Marcel', balance: 0 },
-      { id: '6', name: 'Anna', balance: 0 },
+      { id: '4', name: 'Andrea', balance: 0, debts: [] },
+      { id: '5', name: 'Marcel', balance: 0, debts: [] },
+      { id: '6', name: 'Anna', balance: 0, debts: [] },
     ],
-    expenses: []
+    expenses: [],
   },
   {
     id: 'GroupId3',
@@ -29,11 +29,13 @@ export const groupsMock: Group[] = [
         id: 'person1',
         name: 'Alice',
         balance: 0,
+        debts: [],
       },
       {
         id: 'person2',
         name: 'Bob',
         balance: 0,
+        debts: [],
       },
     ],
     expenses: [
@@ -59,5 +61,5 @@ export const groupsMock: Group[] = [
         beneficiaries: ['person1', 'person2'],
       },
     ],
-  }
+  },
 ]

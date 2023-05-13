@@ -18,4 +18,10 @@ export interface Person {
   id: string
   name: string
   balance: number
+  debts: Debt[]
+}
+
+export interface Debt {
+  owedTo: string // personId of the person who is owed money
+  amount: number
 }

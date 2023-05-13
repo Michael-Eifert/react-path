@@ -9,6 +9,7 @@ describe('addPersonToGroup', () => {
       id: 'testPerson1',
       name: 'Test Person',
       balance: 0,
+      debts: [],
     }
     const updatedGroup = addPersonToGroup(group, newPerson)
     expect(updatedGroup.persons).toContain(newPerson)

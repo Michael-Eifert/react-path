@@ -6,6 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  MenuItem,
   TextField,
   Typography,
 } from '@mui/material'
@@ -77,16 +78,14 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
         id="paidBy"
         select
         label="Paid By"
+        defaultValue=""
         value={paidBy}
         onChange={(e) => setPaidBy(e.target.value)}
-        SelectProps={{
-          native: true,
-        }}
       >
         {group.persons.map((person) => (
-          <option key={person.id} value={person.id}>
+          <MenuItem key={person.id} value={person.id}>
             {person.name}
-          </option>
+          </MenuItem>
         ))}
       </TextField>
       <FormControl component="fieldset" fullWidth margin="normal">

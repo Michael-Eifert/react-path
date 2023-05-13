@@ -36,6 +36,7 @@ const PersonsTab: React.FC<PersonsTabProps> = ({ group }) => {
       id: generateId(),
       name: newPersonName,
       balance: 0,
+      debts: [],
     }
     const updatedGroup = addPersonToGroup(group, newPerson)
     updateGroup(updatedGroup)
