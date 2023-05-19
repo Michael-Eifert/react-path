@@ -24,11 +24,11 @@ const SettleUpTab: React.FC<SettleUpTabProps> = ({ group }) => {
             <Typography mr={1} variant="subtitle1">
               {person.name}
             </Typography>
-            <Typography variant="body1">Balance: {person.balance}</Typography>
+            <Typography variant="body1">{`Balance: ${person.balance}`}</Typography>
             {person.debts?.map((debt, index) => (
-              <Typography key={index} variant="body2">
-                Owes {debt.amount} to{' '}
-                {group.persons.find((p) => p.id === debt.owedTo)?.name}
+              <Typography key={index} variant="body1">
+                &nbsp;{`owes ${debt.amount} to`}&nbsp;
+                {group.persons.find((person) => person.id === debt.owedTo)?.name}
               </Typography>
             ))}
           </ListItem>
