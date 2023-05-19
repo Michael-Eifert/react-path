@@ -13,9 +13,14 @@ interface GroupInputProps {
 
 const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
   const [groupName, setGroupName] = useState('')
+  const [groupCurrency, setGroupCurrency] = useState('')
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGroupName(e.target.value)
+  }
+
+  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupCurrency(e.target.value)
   }
 
   const handleConfirm = (e: React.FormEvent) => {
@@ -23,11 +28,13 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
     const newGroup: Group = {
       id: generateId(),
       name: groupName,
+      currency: groupCurrency,
       persons: [],
       expenses: [],
     }
     onConfirm(newGroup)
     setGroupName('')
+    setGroupCurrency('')
     handleClose() // Close the modal after confirming
   }
   return (
@@ -47,6 +54,14 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
           fullWidth
           variant="standard"
           onChange={handleNameChange}
+        />
+        <TextField
+          margin="dense"
+          id="currency"
+          label="group currency"
+          fullWidth
+          variant="standard"
+          onChange={handleCurrencyChange}
         />
         <ConfirmButton onSubmit={handleConfirm} />
       </form>
