@@ -6,7 +6,7 @@ import GroupElement from '../components/GroupElement'
 import Box from '@mui/material/Box'
 import PageTitle from '../components/PageTitle'
 import { useGroupContext } from '../context/GroupContext'
-import GroupInput from '../components/popupInputs/GroupInput'
+import GroupInput from '../components/inputForms/GroupInput'
 
 const GroupPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)

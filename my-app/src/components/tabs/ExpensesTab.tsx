@@ -6,7 +6,7 @@ import { useGroupContext } from '../../context/GroupContext'
 import AddIcon from '@mui/icons-material/Add'
 import { addExpenseToGroup } from '../../modules/expense.utils'
 import ExpenseList from '../ExpenseList'
-import AddExpenseForm from '../popupInputs/AddExpenseForm'
+import AddExpenseForm from '../inputForms/AddExpenseForm'
 import { generateId } from '../../modules/idGenerator'
 
 interface ExpensesTabProps {

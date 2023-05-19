@@ -11,7 +11,7 @@ const ConfirmButton: React.FC<ConfirmButtonProps> = ({
 }) => {
   return (
     <Button
-      sx={{ mt: '6px' }}
+      sx={{ mt: 3 }}
       variant="contained"
       color="primary"
       type="submit"

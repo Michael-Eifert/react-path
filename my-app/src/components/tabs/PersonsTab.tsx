@@ -7,7 +7,7 @@ import PersonList from '../PersonList'
 import Popup from '../Popup'
 import { addPersonToGroup } from '../../modules/person.utils'
 import { useGroupContext } from '../../context/GroupContext'
-import PersonInput from '../popupInputs/PersonInput'
+import PersonInput from '../inputForms/PersonInput'
 import { generateId } from '../../modules/idGenerator'
 
 interface PersonsTabProps {
