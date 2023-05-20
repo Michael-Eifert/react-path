@@ -9,4 +9,5 @@ export type Route = {
   path: string
   isEnabled: boolean
   icon?: ComponentType
+  subPage?: boolean
 }

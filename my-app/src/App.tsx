@@ -24,7 +24,11 @@ const App: React.FC = () => {
         <ThemeProvider theme={theme}>
           <div className="App">
             <NavBar />
-            <Routes>{routes.map((route) => addRoute(route))}</Routes>
+            <Routes>
+              {routes.map((route) =>
+                route.isEnabled ? addRoute(route) : null,
+              )}
+            </Routes>
           </div>
         </ThemeProvider>
       </GroupContextProvider>
