@@ -14,6 +14,7 @@ import ConfirmButton from '../ConfirmButton'
 import { generateId } from '../../modules/idGenerator'
 import { Group } from '../../model/Group'
 import { useState } from 'react'
+import { currencies } from '../../config/currencies'
 
 interface GroupInputProps {
   onConfirm: (newGroup: Group) => void
@@ -64,7 +65,6 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
           variant="standard"
           onChange={handleNameChange}
         />
-        {/* TODO: Have currencies stored in a config or as an enum */}
         <FormControl sx={{ mt: 2 }} fullWidth>
           <InputLabel id="currency-label">Group Currency</InputLabel>
           <Select
@@ -74,10 +74,11 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
             label="Group Currency"
             onChange={handleCurrencyChange}
           >
-            <MenuItem value={'€'}>Euro (€)</MenuItem>
-            <MenuItem value={'$'}>US Dollar ($)</MenuItem>
-            <MenuItem value={'¥'}>Yen (¥)</MenuItem>
-            {/* Add more currencies as needed */}
+            {currencies.map((currency) => (
+              <MenuItem key={currency.value} value={currency.value}>
+                {currency.label}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <ConfirmButton onSubmit={handleConfirm} />
