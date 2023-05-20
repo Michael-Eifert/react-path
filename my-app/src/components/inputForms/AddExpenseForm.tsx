@@ -105,7 +105,7 @@ const AddExpenseForm: React.FC<AddExpenseFormProps> = ({
           ))}
         </FormGroup>
       </FormControl>
-      <ConfirmButton onSubmit={handleSubmit} />
+      <ConfirmButton onSubmit={handleSubmit} buttonText="Confirm" />
     </Box>
   )
 }

@@ -81,7 +81,7 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
             ))}
           </Select>
         </FormControl>
-        <ConfirmButton onSubmit={handleConfirm} />
+        <ConfirmButton onSubmit={handleConfirm} buttonText="Confirm" />
       </form>
     </Box>
   )

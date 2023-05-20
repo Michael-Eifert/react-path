@@ -42,7 +42,7 @@ const PersonInput: React.FC<PersonInputProps> = ({
           variant="standard"
           onChange={handleNameChange}
         />
-        <ConfirmButton onSubmit={handleConfirm} />
+        <ConfirmButton onSubmit={handleConfirm} buttonText="Confirm" />
       </form>
     </Box>
   )

@@ -2,10 +2,12 @@ import React from 'react'
 import Button, { ButtonProps } from '@mui/material/Button'
 
 interface ConfirmButtonProps extends Omit<ButtonProps, 'type'> {
+  buttonText?: string
   onSubmit?: (props?: any) => void
 }
 
 const ConfirmButton: React.FC<ConfirmButtonProps> = ({
+  buttonText,
   onSubmit,
   ...otherProps
 }) => {
@@ -18,7 +20,7 @@ const ConfirmButton: React.FC<ConfirmButtonProps> = ({
       onClick={onSubmit}
       {...otherProps}
     >
-      Confirm
+      {buttonText ? buttonText : 'Confirm'}
     </Button>
   )
 }

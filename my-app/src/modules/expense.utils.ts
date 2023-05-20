@@ -4,10 +4,22 @@ export const addExpenseToGroup = (group: Group, expense: Expense): Group => {
   const updatedExpenses = [...group.expenses, expense]
 
   const updatedPersons = group.persons.map((person: Person) => {
-    if (person.id === expense.paidBy) {
-      const updatedBalance = person.balance + expense.amount
-      return { ...person, balance: updatedBalance }
-    } else if (expense.beneficiaries.includes(person.id)) {
+    if (
+      expense.beneficiaries.length === 1 &&
+      personIsPayer(expense, person) &&
+      personHasExpense(expense, person)
+    ) {
+      return person
+    } else if (personIsPayer(expense, person)) {
+      if (personHasExpense(expense, person)) {
+        const share =
+          person.balance + expense.amount / expense.beneficiaries.length
+        return { ...person, balance: share }
+      } else {
+        const updatedBalance = person.balance + expense.amount
+        return { ...person, balance: updatedBalance }
+      }
+    } else if (personHasExpense(expense, person)) {
       const share = expense.amount / expense.beneficiaries.length
       const updatedBalance = person.balance - share
 
@@ -41,3 +53,9 @@ export const addExpenseToGroup = (group: Group, expense: Expense): Group => {
 }
 
 export const roundUp = (balance: number) => balance.toFixed(2)
+
+const personHasExpense = (expense: Expense, person: Person): boolean =>
+  expense.beneficiaries.includes(person.id)
+
+const personIsPayer = (expense: Expense, person: Person): boolean =>
+  person.id === expense.paidBy
