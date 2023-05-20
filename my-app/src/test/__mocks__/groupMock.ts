@@ -4,7 +4,7 @@ export const groupsMock: Group[] = [
   {
     id: 'GroupId1',
     name: 'Diamond',
-    currency: 'USD',
+    currency: '$',
     persons: [
       { id: '1', name: 'Myriam', balance: 0, debts: [] },
       { id: '2', name: 'Paul', balance: 0, debts: [] },
@@ -15,7 +15,7 @@ export const groupsMock: Group[] = [
   {
     id: 'GroupId2',
     name: 'Crystal',
-    currency: 'EUR',
+    currency: '€',
     persons: [
       { id: '4', name: 'Andrea', balance: 0, debts: [] },
       { id: '5', name: 'Marcel', balance: 0, debts: [] },
@@ -26,7 +26,7 @@ export const groupsMock: Group[] = [
   {
     id: 'GroupId3',
     name: 'Expenses Example Group',
-    currency: 'GBP',
+    currency: '£',
     persons: [
       {
         id: 'person1',

@@ -1,6 +1,15 @@
 // TODO: Fix linting
 /* eslint-disable react/prop-types */
-import { Box, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography,
+} from '@mui/material'
 import ConfirmButton from '../ConfirmButton'
 import { generateId } from '../../modules/idGenerator'
 import { Group } from '../../model/Group'
@@ -19,8 +28,8 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
     setGroupName(e.target.value)
   }
 
-  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGroupCurrency(e.target.value)
+  const handleCurrencyChange = (e: SelectChangeEvent) => {
+    setGroupCurrency(e.target.value as string)
   }
 
   const handleConfirm = (e: React.FormEvent) => {
@@ -55,14 +64,22 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
           variant="standard"
           onChange={handleNameChange}
         />
-        <TextField
-          margin="dense"
-          id="currency"
-          label="group currency"
-          fullWidth
-          variant="standard"
-          onChange={handleCurrencyChange}
-        />
+        {/* TODO: Have currencies stored in a config or as an enum */}
+        <FormControl sx={{ mt: 2 }} fullWidth>
+          <InputLabel id="currency-label">Group Currency</InputLabel>
+          <Select
+            labelId="currency-label"
+            id="currency"
+            value={groupCurrency}
+            label="Group Currency"
+            onChange={handleCurrencyChange}
+          >
+            <MenuItem value={'€'}>Euro (€)</MenuItem>
+            <MenuItem value={'$'}>US Dollar ($)</MenuItem>
+            <MenuItem value={'¥'}>Yen (¥)</MenuItem>
+            {/* Add more currencies as needed */}
+          </Select>
+        </FormControl>
         <ConfirmButton onSubmit={handleConfirm} />
       </form>
     </Box>

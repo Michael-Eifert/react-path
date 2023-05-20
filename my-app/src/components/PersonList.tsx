@@ -28,7 +28,11 @@ const PersonList: React.FC<PersonListProps> = ({ group }) => {
         <Grid container spacing={3} justifyContent="center">
           {group.persons.map((person: Person) => (
             <Grid item xs={12} key={person.id}>
-              <PersonCard person={person} onRemove={handlePersonRemove} />
+              <PersonCard
+                person={person}
+                currency={group.currency}
+                onRemove={handlePersonRemove}
+              />
             </Grid>
           ))}
         </Grid>

@@ -11,7 +11,9 @@ export const addExpenseToGroup = (group: Group, expense: Expense): Group => {
       const share = expense.amount / expense.beneficiaries.length
       const updatedBalance = person.balance - share
 
-      const existingDebtIndex = person.debts.findIndex((debt) => debt.owedTo === expense.paidBy)
+      const existingDebtIndex = person.debts.findIndex(
+        (debt) => debt.owedTo === expense.paidBy,
+      )
 
       let updatedDebts: Debt[] = []
 
@@ -37,3 +39,5 @@ export const addExpenseToGroup = (group: Group, expense: Expense): Group => {
 
   return { ...group, persons: updatedPersons, expenses: updatedExpenses }
 }
+
+export const roundUp = (balance: number) => balance.toFixed(2)

@@ -10,13 +10,19 @@ import {
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Person } from '../model/Group'
+import { roundUp } from '../modules/expense.utils'
 
 interface PersonCardProps {
   person: Person
+  currency: string
   onRemove: (id: string) => void
 }
 
-const PersonCard: React.FC<PersonCardProps> = ({ person, onRemove }) => {
+const PersonCard: React.FC<PersonCardProps> = ({
+  person,
+  onRemove,
+  currency,
+}) => {
   const handleRemoveClick = () => {
     onRemove(person.id)
   }
@@ -30,7 +36,10 @@ const PersonCard: React.FC<PersonCardProps> = ({ person, onRemove }) => {
               {person.name.slice(0, 2)}
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={person.name} />
+          <ListItemText
+            primary={person.name}
+            secondary={`${roundUp(person.balance)} ${currency}`} // display balance and currency
+          />
           <IconButton onClick={handleRemoveClick}>
             <DeleteIcon />
           </IconButton>
