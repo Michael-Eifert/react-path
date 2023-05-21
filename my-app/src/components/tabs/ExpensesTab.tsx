@@ -44,7 +44,7 @@ const ExpensesTab: React.FC<ExpensesTabProps> = ({ group }) => {
 
   return (
     <Box>
-      <Grid container mb={5}>
+      <Grid container mb={5} data-testid="expenses-tab">
         <Grid item xs={3} sx={{ textAlign: 'left', pl: 3 }} />
         <Grid item xs={6} sx={{ textAlign: 'center', px: 3 }}>
           <p>Add New Expenses</p>

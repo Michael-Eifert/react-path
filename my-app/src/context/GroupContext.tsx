@@ -30,8 +30,6 @@ const GroupProvider: React.FC<GroupProviderProps> = ({ children }) => {
         return group
       }),
     )
-
-    console.log('You updated a group: ', updatedGroup)
   }
 
   const value = {

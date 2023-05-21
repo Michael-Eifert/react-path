@@ -12,9 +12,9 @@ export const addExpenseToGroup = (group: Group, expense: Expense): Group => {
       return person
     } else if (personIsPayer(expense, person)) {
       if (personHasExpense(expense, person)) {
-        const share =
-          person.balance + expense.amount / expense.beneficiaries.length
-        return { ...person, balance: share }
+        const share = expense.amount / expense.beneficiaries.length
+        const updatedBalance = person.balance + (expense.amount - share)
+        return { ...person, balance: updatedBalance }
       } else {
         const updatedBalance = person.balance + expense.amount
         return { ...person, balance: updatedBalance }

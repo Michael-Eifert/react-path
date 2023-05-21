@@ -28,6 +28,33 @@ describe('expense utils', () => {
       ).toBe(-20)
     })
 
+    it('adds an expense to the group, payer is part of several beneficiaries', () => {
+      const group = groupsMock[2] // Expense Example Group
+      const newExpense: Expense = {
+        id: 'newExpense',
+        name: 'Lunch',
+        amount: 30,
+        paidBy: 'person1',
+        beneficiaries: ['person1', 'person2', 'person3'],
+      }
+
+      const result = addExpenseToGroup(group, newExpense)
+
+      // Check if the new expense is added
+      expect(result.expenses).toContain(newExpense)
+
+      // Check if the balances are updated correctly
+      expect(
+        result.persons.find((person) => person.id === 'person1')?.balance,
+      ).toBe(20)
+      expect(
+        result.persons.find((person) => person.id === 'person2')?.balance,
+      ).toBe(-10)
+      expect(
+        result.persons.find((person) => person.id === 'person3')?.balance,
+      ).toBe(-10)
+    })
+
     it('adds an expense paid by the same person', () => {
       const group = groupsMock[2]
       const newExpense: Expense = {

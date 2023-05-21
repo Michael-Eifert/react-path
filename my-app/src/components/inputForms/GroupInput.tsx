@@ -41,6 +41,7 @@ const GroupInput: React.FC<GroupInputProps> = ({ onConfirm, handleClose }) => {
       currency: groupCurrency,
       persons: [],
       expenses: [],
+      payments: [],
     }
     onConfirm(newGroup)
     setGroupName('')

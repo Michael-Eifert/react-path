@@ -3,7 +3,6 @@ import { Box, Tab, Tabs } from '@mui/material'
 import PersonsTab from './tabs/PersonsTab'
 import { Group } from '../model/Group'
 import ExpensesTab from './tabs/ExpensesTab'
-import SettleUpTab from './tabs/SettleUpTab'
 
 interface GroupTabProps {
   group: Group
@@ -27,13 +26,11 @@ const GroupTabs: React.FC<GroupTabProps> = ({
         >
           <Tab label="Persons" />
           <Tab label="Expenses" />
-          <Tab label="Settle Up" />
         </Tabs>
       </Box>
       <Box mt={4}>
         {tabValue === 0 && <PersonsTab group={group} />}
         {tabValue === 1 && <ExpensesTab group={group} />}
-        {tabValue === 2 && <SettleUpTab group={group} />}
       </Box>
     </>
   )

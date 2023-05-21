@@ -1,24 +1,16 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import { Group } from '../model/Group'
+import { Expense, Group } from '../model/Group'
 
 interface ExpenseListProps {
   group: Group
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ group }) => {
-  const { expenses } = group
+  const { expenses, payments } = group
 
-  return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Name</TableCell>
-          <TableCell>Amount</TableCell>
-          <TableCell>Paid By</TableCell>
-          <TableCell>Beneficiaries</TableCell>
-        </TableRow>
-      </TableHead>
+  const showExpenses = () => {
+    return (
       <TableBody>
         {expenses.map((expense) =>
           expense ? (
@@ -42,6 +34,38 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ group }) => {
           ) : null,
         )}
       </TableBody>
+    )
+  }
+
+  const showPayments = () => {
+    return (
+      <TableBody>
+        {payments.map((payment, key) =>
+          payment ? (
+            <TableRow key={key}>
+              <TableCell>{'Payment'}</TableCell>
+              <TableCell>{payment.amount}</TableCell>
+              <TableCell>{payment.payerName}</TableCell>
+              <TableCell>{payment.recipientName}</TableCell>
+            </TableRow>
+          ) : null,
+        )}
+      </TableBody>
+    )
+  }
+
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Name</TableCell>
+          <TableCell>Amount</TableCell>
+          <TableCell>Paid By</TableCell>
+          <TableCell>Beneficiaries</TableCell>
+        </TableRow>
+      </TableHead>
+      {showExpenses()}
+      {showPayments()}
     </Table>
   )
 }

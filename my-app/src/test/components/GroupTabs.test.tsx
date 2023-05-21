@@ -21,14 +21,11 @@ describe('GroupTabs', () => {
 
     const personsTab = screen.getByText('Persons')
     const expensesTab = screen.getByText('Expenses')
-    const settleUpTab = screen.getByText('Settle Up')
 
     expect(personsTab).toBeInTheDocument()
     expect(expensesTab).toBeInTheDocument()
-    expect(settleUpTab).toBeInTheDocument()
 
     fireEvent.click(personsTab)
     fireEvent.click(expensesTab)
-    fireEvent.click(settleUpTab)
   })
 })

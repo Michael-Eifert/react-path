@@ -15,7 +15,6 @@ const GroupPage: React.FC = () => {
   const handleOpen = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
   const onConfirmPopup = (newGroup: Group) => {
-    console.log('You created a new group:', newGroup)
     setGroups([...groups, newGroup])
   }
 

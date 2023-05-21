@@ -10,8 +10,8 @@ const NavBar: React.FC = () => {
 
   const renderNavButton = (route: Route) => {
     return (
-      <Button className="navbar-button">
-        <Link to={route.path} className="custom-link">
+      <Button key={route.key} className="navbar-button">
+        <Link key={`${route.key}-link`} to={route.path} className="custom-link">
           {route.title}
         </Link>
       </Button>

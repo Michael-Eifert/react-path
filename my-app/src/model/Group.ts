@@ -5,6 +5,7 @@ export interface Group {
   currency: string
   persons: Person[]
   expenses: Expense[]
+  payments: GroupPayment[]
 }
 
 export interface Expense {
@@ -20,9 +21,21 @@ export interface Person {
   name: string
   balance: number
   debts: Debt[]
+  payments: Payment[]
 }
 
 export interface Debt {
   owedTo: string // personId of the person who is owed money
+  amount: number
+}
+
+export interface Payment {
+  paidTo: string // personId of the person who got paid
+  amount: number
+}
+
+export interface GroupPayment {
+  payerName: string
+  recipientName: string
   amount: number
 }
